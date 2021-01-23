@@ -1,5 +1,6 @@
 package io.makeon.springboottest.domain.posts;
 
+import io.makeon.springboottest.domain.BaseTimeEntity;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -14,7 +15,7 @@ import javax.persistence.*;
 // 테이블과 자동 매칭되는 클래스
 // 자동으로 snake case 로 변경
 @Entity
-public class Posts {
+public class Posts extends BaseTimeEntity {
     // PK
     @Id
     // PK 규칙, Long(BIGINT), auto_increment 추천
