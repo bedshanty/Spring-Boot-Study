@@ -11,4 +11,9 @@ public class IndexController {
         // src/main/resources/templates/index.mustache 로 매핑
         return "index";
     }
+
+    @GetMapping("/posts/save")
+    public String postsSave() {
+        return "posts-save";
+    }
 }
