@@ -35,4 +35,7 @@ dependencies {
     testCompile('org.springframework.boot:spring-boot-starter-test')
     testCompile group: 'junit', name: 'junit', version: '4.12'
     compile('org.springframework.boot:spring-boot-starter-mustache')
+    // 소셜 기능 구현 시 필요
+    // spring-security-oauth2-client, spring-security-oauth2-jose 를 기본으로 관리
+    compile('org.springframework.boot:spring-boot-starter-oauth2-client')
 }

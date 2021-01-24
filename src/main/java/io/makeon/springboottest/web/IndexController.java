@@ -1,5 +1,6 @@
 package io.makeon.springboottest.web;
 
+import io.makeon.springboottest.config.auth.dto.SessionUser;
 import io.makeon.springboottest.service.posts.PostsService;
 import io.makeon.springboottest.web.dto.PostsResponseDto;
 import lombok.RequiredArgsConstructor;
@@ -8,15 +9,24 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 
+import javax.servlet.http.HttpSession;
+
 @RequiredArgsConstructor
 @Controller
 public class IndexController {
     private final PostsService postsService;
+    private final HttpSession httpSession;
 
     @GetMapping("/")
     // Model => 서버 템플릿 엔진에서 사용 가능한 객체 저장
     public String index(Model model) {
         model.addAttribute("posts", postsService.findAllDesc());
+        SessionUser user = (SessionUser) httpSession.getAttribute("user");
+
+        if (user != null) {
+            model.addAttribute("userName", user.getName());
+        }
+
         // 머스태치 스타터가 자동으로 문자열 앞 경로, 뒤 확장자를 지정
         // src/main/resources/templates/index.mustache 로 매핑
         return "index";
